@@ -31,7 +31,12 @@
 #include <dfs_posix.h>
 #include <rtthread.h>
 
-#define CS_ENABLE_DEBUG                          0
+#if defined(PKG_MONGOOSE_ENABLE_DEBUG)
+    #define CS_ENABLE_DEBUG                      1
+#else
+    #define CS_ENABLE_DEBUG                      0
+#endif
+
 #define CS_PLATFORM                              CS_P_STM32
 #define CS_DEFINE_DIRENT                         0
 
@@ -45,11 +50,35 @@
 #define MG_FREE                                  rt_free
 #define MG_STRDUP                                rt_strdup
 
-#define MG_ENABLE_MQTT                           0
-#define MG_ENABLE_HTTP_WEBSOCKET                 1
-#define MG_ENABLE_HEXDUMP                        0
-#define MG_ENABLE_FILESYSTEM                     1
-#define MG_ENABLE_HTTP_STREAMING_MULTIPART       1
+#if defined(PKG_MONGOOSE_ENABLE_HTTP_WEBSOCKET)
+    #define MG_ENABLE_HTTP_WEBSOCKET             1
+#else
+    #define MG_ENABLE_HTTP_WEBSOCKET             0
+#endif
+
+#if defined(PKG_MONGOOSE_ENABLE_FILESYSTEM)
+    #define MG_ENABLE_FILESYSTEM                 1
+#else
+    #define MG_ENABLE_FILESYSTEM                 0
+#endif
+
+#if defined(PKG_MONGOOSE_ENABLE_HTTP_STREAMING_MULTIPART)
+    #define MG_ENABLE_HTTP_STREAMING_MULTIPART   1
+#else
+    #define MG_ENABLE_HTTP_STREAMING_MULTIPART   0
+#endif
+
+#if defined(PKG_MONGOOSE_ENABLE_MQTT)
+    #define MG_ENABLE_MQTT                       1
+#else
+    #define MG_ENABLE_MQTT                       0
+#endif
+
+#if defined(PKG_MONGOOSE_ENABLE_HEXDUMP)
+    #define MG_ENABLE_HEXDUMP                    0
+#else
+    #define MG_ENABLE_HEXDUMP                    1
+#endif
 
 #define fcntl(s,cmd,val)                         lwip_fcntl(s,cmd,val)
 
