@@ -75,9 +75,9 @@
 #endif
 
 #if defined(PKG_MONGOOSE_ENABLE_HEXDUMP)
-    #define MG_ENABLE_HEXDUMP                    0
-#else
     #define MG_ENABLE_HEXDUMP                    1
+#else
+    #define MG_ENABLE_HEXDUMP                    0
 #endif
 
 #define fcntl(s,cmd,val)                         lwip_fcntl(s,cmd,val)
