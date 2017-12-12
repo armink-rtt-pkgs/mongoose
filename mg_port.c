@@ -33,29 +33,10 @@
 
 static rt_mutex_t mg_locker = NULL;
 
-int gettimeofday(struct timeval *tp, void *ignore)
-{
-
-    time_t time;
-    rt_device_t device;
-
-    device = rt_device_find("rtc");
-    if (device != RT_NULL)
-    {
-        rt_device_control(device, RT_DEVICE_CTRL_RTC_GET_TIME, &time);
-        if (tp != RT_NULL)
-        {
-            tp->tv_sec = time;
-        }
-    }
-
-    return 0;
-}
-
 /**
- * Mongoose 库移植功能初始化
+ * Mongoose Library port initialization
  */
-void mongoose_port_init() {
+void mongoose_port_init(void) {
     if (!mg_locker) {
         mg_locker = rt_mutex_create("mg_lock", RT_IPC_FLAG_FIFO);
     }

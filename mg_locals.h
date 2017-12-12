@@ -40,6 +40,8 @@
 #define CS_PLATFORM                              CS_P_STM32
 #define CS_DEFINE_DIRENT                         0
 
+#define MG_ENABLE_HTTP_SSI                       0
+
 #define MG_NET_IF                                MG_NET_IF_SOCKET
 #define MG_LWIP                                  1
 #define RTOS_SDK                                 1
@@ -49,6 +51,7 @@
 #define MG_REALLOC                               rt_realloc
 #define MG_FREE                                  rt_free
 #define MG_STRDUP                                rt_strdup
+#define WEAK                                     RT_WEAK
 
 #if defined(PKG_MONGOOSE_ENABLE_HTTP_WEBSOCKET)
     #define MG_ENABLE_HTTP_WEBSOCKET             1
@@ -82,10 +85,9 @@
 
 #define fcntl(s,cmd,val)                         lwip_fcntl(s,cmd,val)
 
-extern int gettimeofday(struct timeval *tp, void *ignore);
 /**
- * Mongoose 库移植功能初始化
+ * Mongoose Library port initialization
  */
-void mongoose_port_init();
+void mongoose_port_init(void);
 
 #endif /* _MONGOOSE_MG_LOCALS_H_ */
