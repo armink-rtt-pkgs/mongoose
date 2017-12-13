@@ -77,6 +77,12 @@
     #define MG_ENABLE_MQTT                       0
 #endif
 
+#if defined(PKG_MONGOOSE_ENABLE_COAP)
+    #define MG_ENABLE_COAP                       1
+#else
+    #define MG_ENABLE_COAP                       0
+#endif
+
 #if defined(PKG_MONGOOSE_ENABLE_HEXDUMP)
     #define MG_ENABLE_HEXDUMP                    1
 #else
