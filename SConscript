@@ -9,6 +9,6 @@ path    = [cwd]
 
 CPPDEFINES = ['MG_LOCALS']
 
-group = DefineGroup('Mongoose', src, depend = [''], CPPPATH = path, CPPDEFINES = CPPDEFINES)
+group = DefineGroup('Mongoose', src, depend = ['PKG_USING_MONGOOSE'], CPPPATH = path, CPPDEFINES = CPPDEFINES)
 
 Return('group')
